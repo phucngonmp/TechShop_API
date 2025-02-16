@@ -1,5 +1,6 @@
 package org.example.learningjwt.controller;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.example.learningjwt.dto.request.ApiResponse;
 import org.example.learningjwt.dto.request.UserDTO;
@@ -30,13 +31,6 @@ public class UserController {
                 .map(user -> userMapper.toUserResponse(user))
                 .collect(Collectors.toList());
     }
-
-    @PostMapping()
-    private ApiResponse<UserResponse> createUser(@Valid @RequestBody UserDTO request) throws AppException {
-        User user = userService.createUser(request);
-        return new ApiResponse<>(200, "register successfully", userMapper.toUserResponse(user));
-    }
-
     @DeleteMapping("/{id}")
     private ApiResponse deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
@@ -49,7 +43,7 @@ public class UserController {
         return new ApiResponse<>(200, "update successfully", userService.getUser(id));
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     private UserResponse getUser(@PathVariable Long id){
         return userMapper.toUserResponse(userService.getUser(id));
     }

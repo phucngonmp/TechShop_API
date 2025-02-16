@@ -1,4 +1,4 @@
 
-INSERT INTO USERS (USERNAME, PASSWORD, email, role) VALUES ('superadmin', '$2a$10$I858UdVkHuRNGZGw879dWu7ot9GNtTo4rRJdufMYX2ttaPn7P1p5.', 'phucnm.21it@vku.udn.vn', 0);
-INSERT INTO USERS (username, password, email, role) VALUES ('superuser', '$2a$10$I858UdVkHuRNGZGw879dWu7ot9GNtTo4rRJdufMYX2ttaPn7P1p5.', 'phucngonmp1506@gmail.com', 1);
+INSERT INTO USERS (USERNAME, PASSWORD, email, role, enabled, verification_token) VALUES ('superadmin', '$2a$10$uy08U4tsYx4jX2R3bPsN3eeLYPocLsI.gypZGkTEePIouUjW0eWT.', 'foo@gmail.com', 0, 1, null);
+INSERT INTO USERS (username, password, email, role, enabled, verification_token) VALUES ('superuser', '$2a$10$uy08U4tsYx4jX2R3bPsN3eeLYPocLsI.gypZGkTEePIouUjW0eWT.', 'foo2@gmail.com', 1, 1, null);
 

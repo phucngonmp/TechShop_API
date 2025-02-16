@@ -28,6 +28,9 @@ public class User {
     @Email(message = "EMAIL_INVALID")
     private String email;
 
+    private boolean enabled = false;
+    @Column(name = "verification_token")
+    private String verificationToken;
     @Enumerated(EnumType.ORDINAL)
     private Role role;
 }
