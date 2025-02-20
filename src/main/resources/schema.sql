@@ -8,3 +8,11 @@ CREATE TABLE IF NOT EXISTS "USERS" (
                                         ROLE INT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS PRODUCT (
+                                       ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                       NAME VARCHAR(255) NOT NULL,
+                                       PRICE FLOAT NOT NULL,
+                                       QUANTITY INT NOT NULL,
+                                       DESCRIPTION VARCHAR(1000)
+);
+

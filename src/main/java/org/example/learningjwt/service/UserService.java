@@ -31,12 +31,12 @@ public class UserService {
         this.emailService = emailService;
     }
 
-    public String createUser(UserDTO userDTO) throws AppException, MessagingException {
+    public String createUser(UserDTO userDTO) {
         if(userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
-            throw new AppException(ErrorCode.EMAIL_EXISTS);
+            throw new RuntimeException("Email already exists");
         }
         if(userRepository.existsByUsername(userDTO.getUsername())){
-            throw new AppException(ErrorCode.USER_EXISTS);
+            throw new RuntimeException("Username already exists");
         }
         User user = userMapper.toUser(userDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -47,10 +47,10 @@ public class UserService {
         userRepository.save(user);
         return "Registration successful! Please check your email for verification.";
     }
-    public User verifyUser(String token) throws AppException {
+    public User verifyUser(String token){
         Optional<User> optionalUser = userRepository.findByVerificationToken(token);
         if (!optionalUser.isPresent()) {
-            throw new AppException(ErrorCode.VERIFICATION_TOKEN_INVALID);
+            throw new RuntimeException(ErrorCode.VERIFICATION_TOKEN_INVALID.getName());
         }
 
         User user = optionalUser.get();
@@ -73,7 +73,7 @@ public class UserService {
 
     public User getUser(long id){
         return userRepository.findById(id)
-                .orElseThrow(() ->new RuntimeException(ErrorCode.USER_EXISTS.getName()));
+                .orElseThrow(() ->new RuntimeException(ErrorCode.USERNAME_NOT_FOUND.getName()));
     }
     public User getUser(String username){
         return userRepository.findByUsername(username)

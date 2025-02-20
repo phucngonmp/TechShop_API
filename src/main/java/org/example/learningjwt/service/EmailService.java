@@ -14,18 +14,23 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public void sendVerificationEmail(String to, String token) throws MessagingException {
+    public void sendVerificationEmail(String to, String token)  {
         String subject = "Verify Your Email";
         String verificationUrl = "http://localhost:8080/auth/verify?token=" + token;
         String body = "<p>Click the link below to verify your email:</p>"
                 + "<a href=\"" + verificationUrl + "\">Verify Email</a>";
 
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(body, true);
+        MimeMessageHelper helper = null;
+        try {
+            helper = new MimeMessageHelper(message, true);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body, true);
 
+        } catch (MessagingException e) {
+            throw new RuntimeException(e.getMessage());
+        }
         mailSender.send(message);
     }
 }

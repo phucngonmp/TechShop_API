@@ -1,9 +1,10 @@
 package org.example.learningjwt;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.example")
 public class LearningJwtApplication {
 
     public static void main(String[] args) {

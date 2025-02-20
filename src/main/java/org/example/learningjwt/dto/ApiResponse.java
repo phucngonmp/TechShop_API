@@ -1,4 +1,4 @@
-package org.example.learningjwt.dto.request;
+package org.example.learningjwt.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

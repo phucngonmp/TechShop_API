@@ -1,7 +1,7 @@
 package org.example.learningjwt.exception;
 
 import jakarta.validation.ConstraintViolationException;
-import org.example.learningjwt.dto.request.ApiResponse;
+import org.example.learningjwt.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.MailSendException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -63,6 +63,7 @@ public class HandleExceptions {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleRuntimeException(RuntimeException e){
+        e.printStackTrace();
         return new ApiResponse<>(400, e.getMessage(), null);
     }
 }

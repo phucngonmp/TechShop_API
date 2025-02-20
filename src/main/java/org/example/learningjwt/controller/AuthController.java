@@ -2,7 +2,7 @@ package org.example.learningjwt.controller;
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import org.example.learningjwt.dto.request.ApiResponse;
+import org.example.learningjwt.dto.ApiResponse;
 import org.example.learningjwt.dto.request.LoginRequest;
 import org.example.learningjwt.dto.request.UserDTO;
 import org.example.learningjwt.exception.AppException;
@@ -31,10 +31,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ApiResponse login(@RequestBody LoginRequest loginRequest)
-            throws BadCredentialsException, RuntimeException, AppException {
+    public ApiResponse login(@RequestBody LoginRequest loginRequest) {
         if(!userService.isUserEnabled(loginRequest.getUsername())){
-            throw new AppException(ErrorCode.USER_DISABLED);
+            throw new RuntimeException(ErrorCode.USER_DISABLED.getName());
         }
         Authentication authenticationRequest =
                 UsernamePasswordAuthenticationToken.unauthenticated(
@@ -47,13 +46,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ApiResponse register(@Valid @RequestBody UserDTO userDTO) throws AppException, MessagingException {
+    public ApiResponse register(@Valid @RequestBody UserDTO userDTO){
         String message = userService.createUser(userDTO);
         return new ApiResponse<>(200, message, null);
 
     }
     @GetMapping("/verify")
-    public String verify(@RequestParam String token) throws AppException {
+    public String verify(@RequestParam String token) {
         userService.verifyUser(token);
         return "<html>" +
                 "<head>" +

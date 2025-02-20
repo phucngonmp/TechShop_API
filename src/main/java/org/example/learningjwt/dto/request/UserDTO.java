@@ -19,6 +19,4 @@ public class UserDTO {
     private String password;
     @Email(message = "EMAIL_INVALID")
     private String email;
-    @Enumerated(EnumType.ORDINAL)
-    private Role role;
 }

@@ -22,5 +22,14 @@ public enum ErrorCode{
 
     private int code;
     private String name;
+
+    public static ErrorCode fromName(String name) {
+        for (ErrorCode errorCode : ErrorCode.values()) {
+            if (errorCode.name.equalsIgnoreCase(name)) {
+                return errorCode;
+            }
+        }
+        throw new IllegalArgumentException("No matching ErrorCode for name: " + name);
+    }
 }
 
