@@ -1,13 +1,10 @@
 package org.example.learningjwt.service;
 
-import jakarta.mail.MessagingException;
-import org.example.learningjwt.dto.request.UserDTO;
+import org.example.learningjwt.dto.UserDTO;
 import org.example.learningjwt.entity.User;
-import org.example.learningjwt.exception.AppException;
-import org.example.learningjwt.exception.ErrorCode;
+import org.example.learningjwt.enums.ErrorCode;
 import org.example.learningjwt.mapper.UserMapper;
 import org.example.learningjwt.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

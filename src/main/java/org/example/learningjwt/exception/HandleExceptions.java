@@ -1,7 +1,8 @@
 package org.example.learningjwt.exception;
 
 import jakarta.validation.ConstraintViolationException;
-import org.example.learningjwt.dto.ApiResponse;
+import org.example.learningjwt.dto.response.ApiResponse;
+import org.example.learningjwt.enums.ErrorCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.MailSendException;
 import org.springframework.security.authentication.BadCredentialsException;

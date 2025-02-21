@@ -1,12 +1,9 @@
-package org.example.learningjwt.dto.request;
+package org.example.learningjwt.dto;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.example.learningjwt.enums.Role;
 
 @Data
 public class UserDTO {

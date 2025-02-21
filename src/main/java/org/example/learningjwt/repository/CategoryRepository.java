@@ -1,9 +1,9 @@
 package org.example.learningjwt.repository;
 
-import org.example.learningjwt.entity.Product;
+import org.example.learningjwt.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends BaseRepository<Product> {
+public interface CategoryRepository extends BaseRepository<Category>{
 }

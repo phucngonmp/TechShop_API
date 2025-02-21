@@ -1,4 +1,4 @@
-package org.example.learningjwt.exception;
+package org.example.learningjwt.enums;
 
 
 import lombok.AllArgsConstructor;

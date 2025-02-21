@@ -33,4 +33,7 @@ public class User {
     private String verificationToken;
     @Enumerated(EnumType.ORDINAL)
     private Role role;
+
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 }

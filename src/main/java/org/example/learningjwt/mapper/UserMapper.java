@@ -1,6 +1,6 @@
 package org.example.learningjwt.mapper;
 
-import org.example.learningjwt.dto.request.UserDTO;
+import org.example.learningjwt.dto.UserDTO;
 import org.example.learningjwt.dto.response.UserResponse;
 import org.example.learningjwt.entity.User;
 import org.example.learningjwt.enums.Role;

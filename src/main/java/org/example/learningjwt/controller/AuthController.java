@@ -1,16 +1,13 @@
 package org.example.learningjwt.controller;
 
-import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import org.example.learningjwt.dto.ApiResponse;
+import org.example.learningjwt.dto.response.ApiResponse;
 import org.example.learningjwt.dto.request.LoginRequest;
-import org.example.learningjwt.dto.request.UserDTO;
-import org.example.learningjwt.exception.AppException;
-import org.example.learningjwt.exception.ErrorCode;
+import org.example.learningjwt.dto.UserDTO;
+import org.example.learningjwt.enums.ErrorCode;
 import org.example.learningjwt.service.JwtService;
 import org.example.learningjwt.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
