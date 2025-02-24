@@ -4,6 +4,7 @@ import org.example.learningjwt.dto.UserDTO;
 import org.example.learningjwt.entity.User;
 import org.example.learningjwt.enums.ErrorCode;
 import org.example.learningjwt.mapper.UserMapper;
+import org.example.learningjwt.repository.CartRepository;
 import org.example.learningjwt.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,13 +20,15 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
+    private final CartService cartService;
 
     public UserService(UserRepository userRepository, UserMapper userMapper,
-                       PasswordEncoder passwordEncoder, EmailService emailService) {
+                       PasswordEncoder passwordEncoder, EmailService emailService, CartService cartService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
+        this.cartService = cartService;
     }
 
     public String createUser(UserDTO userDTO) {
@@ -42,6 +45,7 @@ public class UserService {
         user.setVerificationToken(token);
         emailService.sendVerificationEmail(user.getEmail(), token);
         userRepository.save(user);
+        cartService.createNewCart(user);
         return "Registration successful! Please check your email for verification.";
     }
     public User verifyUser(String token){
@@ -54,7 +58,6 @@ public class UserService {
         user.setEnabled(true);
         user.setVerificationToken(null);
         userRepository.save(user);
-
         return user;
     }
     public User updateUser(long id, UserDTO userDTO){

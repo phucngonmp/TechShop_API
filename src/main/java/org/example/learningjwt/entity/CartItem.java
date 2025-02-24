@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "cart_item")
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,6 @@ public class CartItem {
     private Product product;
 
     private int quantity;
-
-    private double totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")

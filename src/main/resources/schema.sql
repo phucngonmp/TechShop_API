@@ -1,25 +1,44 @@
-CREATE TABLE IF NOT EXISTS "USERS" (
-                                        ID BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                        USERNAME VARCHAR(255) NOT NULL,
-                                        PASSWORD VARCHAR(255) NOT NULL,
-                                        EMAIL VARCHAR(255) NOT NULL,
-                                        ENABLED BOOLEAN NOT NULL,
-                                        VERIFICATION_TOKEN VARCHAR(255),
-                                        ROLE INT NOT NULL
+CREATE TABLE IF NOT EXISTS "USERS"
+(
+    ID                 BIGINT AUTO_INCREMENT PRIMARY KEY,
+    USERNAME           VARCHAR(255) NOT NULL,
+    PASSWORD           VARCHAR(255) NOT NULL,
+    EMAIL              VARCHAR(255) NOT NULL,
+    ENABLED            BOOLEAN      NOT NULL,
+    VERIFICATION_TOKEN VARCHAR(255),
+    ROLE               INT          NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS CATEGORY (
-                                       ID BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                       NAME VARCHAR(255) NOT NULL
+CREATE TABLE IF NOT EXISTS CATEGORY
+(
+    ID   BIGINT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS PRODUCT (
-                                       ID BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                       NAME VARCHAR(255) NOT NULL,
-                                       PRICE FLOAT NOT NULL,
-                                       QUANTITY INT NOT NULL,
-                                       DESCRIPTION VARCHAR(1000),
-                                       CATEGORY_ID BIGINT,
-                                       CONSTRAINT fk_category FOREIGN KEY (CATEGORY_ID) REFERENCES CATEGORY(ID)
+CREATE TABLE IF NOT EXISTS PRODUCT
+(
+    ID          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    NAME        VARCHAR(255) NOT NULL,
+    PRICE       FLOAT        NOT NULL,
+    QUANTITY    INT          NOT NULL,
+    DESCRIPTION VARCHAR(1000),
+    CATEGORY_ID BIGINT       NOT NULL,
+    CONSTRAINT fk_category FOREIGN KEY (CATEGORY_ID) REFERENCES CATEGORY (ID)
 );
 
+CREATE TABLE IF NOT EXISTS CART (
+    ID          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    TOTAL_PRICE FLOAT NOT NULL,
+    USER_ID     BIGINT,
+    CONSTRAINT fk_user FOREIGN KEY (USER_ID) REFERENCES USERS (ID)
+);
+
+CREATE TABLE IF NOT EXISTS CART_ITEM
+(
+    ID         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    PRODUCT_ID BIGINT NOT NULL,
+    QUANTITY   INT    NOT NULL,
+    CART_ID    BIGINT NOT NULL,
+    CONSTRAINT fk_product FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT (ID),
+    CONSTRAINT fk_cart FOREIGN KEY (CART_ID) REFERENCES CART (ID)
+);
